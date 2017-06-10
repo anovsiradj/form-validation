@@ -16,7 +16,7 @@ var form_validation_config = {
 	alert: {
 		template: '<div class="tooltip vorm"><div class="tooltip-arrow vorm-arrow"></div><div class="tooltip-inner vorm-inner"></div></div>',
 		placement: 'bottom',
-		trigger: 'manual' // actually you cannot change this.
+		trigger: 'manual' // actually you cannot change this (template too).
 	}
 }
 
@@ -30,6 +30,7 @@ var form_validation = function(form_selector, all_rules) {
 		this.form = form_selector;
 	} else return;
 
+	// indicator
 	// prevent shitload event listener
 	// basically happen when spamming submit form (or enter)
 	this.is_idle_error = false;
@@ -89,14 +90,14 @@ form_validation.prototype.execute_rules = function(input_name) {
 
 		} else if (is_array(this.rules[input_name][i])) {
 			var rule_name = this.rules[input_name][i][0];
-			var params = this.rules[input_name][i].slice(1);
+			var params = this.rules[input_name][i].slice(1); // copy
 			params.unshift(input);
 
 			is_no_err = form_validation_rules[rule_name].action.apply(this, params);
 			err_msg = form_validation_rules[rule_name].message;
 
 		} else if (is_object(this.rules[input_name][i])) {
-			var params = this.rules[input_name][i].params || [];
+			var params = (this.rules[input_name][i].params || []).slice(); // copy
 			params.unshift(input);
 			is_no_err = this.rules[input_name][i].action.apply(this, params);
 			err_msg = this.rules[input_name][i].message;
