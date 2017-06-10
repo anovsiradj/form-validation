@@ -1,0 +1,74 @@
+.vorm {
+	position: absolute;
+	border-radius: 2px;
+	padding: 10px;
+	text-align: center;
+	background: #1E252B;
+	color: #FFFFFF;
+	/*max-width: 200px;*/
+	/*width: auto;*/
+	font-size: medium;
+	padding: .5em 1em;
+}
+.vorm .vorm-arrow {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	position: absolute;
+	margin: 5px;
+}
+.vorm .vorm-arrow {
+	border-color: #1E252B;
+}
+.vorm[x-placement^="top"] {
+	margin-bottom: 5px;
+}
+.vorm[x-placement^="top"] .vorm-arrow {
+	border-width: 5px 5px 0 5px;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	bottom: -5px;
+	left: calc(50% - 5px);
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.vorm[x-placement^="bottom"] {
+	margin-top: 5px;
+}
+.vorm[x-placement^="bottom"] .vorm-arrow {
+	border-width: 0 5px 5px 5px;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	border-top-color: transparent;
+	top: -5px;
+	left: calc(50% - 5px);
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.vorm[x-placement^="right"] {
+	margin-left: 5px;
+}
+.vorm[x-placement^="right"] .vorm-arrow {
+	border-width: 5px 5px 5px 0;
+	border-left-color: transparent;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+	left: -5px;
+	top: calc(50% - 5px);
+	margin-left: 0;
+	margin-right: 0;
+}
+.vorm[x-placement^="left"] {
+	margin-right: 5px;
+}
+.vorm[x-placement^="left"] .vorm-arrow {
+	border-width: 5px 0 5px 5px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	right: -5px;
+	top: calc(50% - 5px);
+	margin-left: 0;
+	margin-right: 0;
+}

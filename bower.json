@@ -1,0 +1,10 @@
+{
+  "name": "vorm",
+  "authors": [
+    "anovsiradj <anov.siradj22@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "tooltip.js": "https://unpkg.com/tooltip.js"
+  }
+}

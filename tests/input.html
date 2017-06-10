@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>input</title>
+	<link rel="stylesheet" href="theme.css?1"/>
+	<link rel="stylesheet" href="style.css?2"/>
+	<script src="node_modules/popper.js/dist/umd/popper.js"></script>
+	<script src="node_modules/tooltip.js/dist/umd/tooltip.js"></script>
+	<script src="main.js?10"></script>
+</head>
+<body>
+
+<form id="form1" autocomplete="off">
+	<div>
+		<input type="text" name="input1" data-params="1|2"/>
+	</div>
+
+	<button type="submit">submit</button>
+</form>
+
+<script>
+var fv = Vorm(document.getElementById('form1'), {
+	input1: [
+		'important',
+		['min_length', 2],
+		{
+			action: function(elm) {
+				if (elm.value === 'anov') {
+					return true;
+				}
+				return false;
+			},
+			message: '{name} harus {value}'
+		}
+	]
+});
+</script>
+</body>
+</html>
