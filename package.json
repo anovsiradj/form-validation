@@ -1,5 +1,5 @@
 {
-  "name": "vorm",
+  "name": "vorm.js",
   "dependencies": {
     "tooltip.js": "^1.1.4"
   }

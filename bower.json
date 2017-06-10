@@ -1,10 +1,11 @@
 {
-  "name": "vorm",
+  "name": "vorm.js",
   "authors": [
     "anovsiradj <anov.siradj22@gmail.com>"
   ],
   "license": "MIT",
   "dependencies": {
+    "popper.js": "https://unpkg.com/popper.js",
     "tooltip.js": "https://unpkg.com/tooltip.js"
   }
 }
