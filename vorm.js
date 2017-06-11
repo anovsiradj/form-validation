@@ -1,4 +1,5 @@
 ;(function(undefined) {
+'use strict';
 
 function is_array(o) {
 	if (Array.isArray === undefined) return Object.prototype.toString.call(o) === '[object Array]';
@@ -10,6 +11,29 @@ function is_string(o) {
 function is_object(o) {
 	return Object.prototype.toString.call(o) === "[object Object]";
 }
+
+// Polyfill from MDN with some modification following my taste
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+if (Object.assign === undefined) {
+	Object.assign = function(a, b) { // .length of function is 2
+		if (is_object(a) === false) { // TypeError if undefined or null (or non-object)
+			throw new TypeError('Cannot convert different type to object');
+		}
+		var to = Object(a);
+		for (var index = 1; index < arguments.length; index++) {
+			var nextSource = arguments[index];
+			if (nextSource === undefined || nextSource === null) continue; // Skip over if undefined or null
+			for (var nextKey in nextSource) {
+				// Avoid bugs when hasOwnProperty is shadowed
+				if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+					to[nextKey] = nextSource[nextKey];
+				}
+			}
+		}
+		return a;
+	};
+}
+
 
 // default
 var form_validation_config = {
