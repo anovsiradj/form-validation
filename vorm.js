@@ -169,6 +169,18 @@ var form_validation_rules = {
 			return true;
 		},
 		message: 'max_length[Infinity]'
+	},
+	between_length: {
+		params: [0, Infinity],
+		action: function(elm, min, max) {
+			var a = form_validation_rules.min_length.action(elm, min);
+			var b = form_validation_rules.max_length.action(elm, max);
+			if (a && b) {
+				return true;
+			}
+			return false;
+		},
+		message: 'between_length[0,Infinity]'
 	}
 };
 
