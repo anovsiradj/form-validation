@@ -66,10 +66,11 @@ var form_validation = function(form_selector, all_rules) {
 
 form_validation.prototype.attach_submit_event = function() {
 	var this_instance = this;
+	var attach_submit_opt = true;
 	var attach_submit_fn = function(ev) {
 		ev.preventDefault();
 
-		this_instance.form.removeEventListener('submit', attach_submit_fn);
+		this_instance.form.removeEventListener('submit', attach_submit_fn, attach_submit_opt);
 
 		if (this_instance.is_idle_error) {
 			this_instance.attach_submit_event();
@@ -77,7 +78,7 @@ form_validation.prototype.attach_submit_event = function() {
 			this_instance.run.apply(this_instance);
 		}
 	}
-	this.form.addEventListener('submit', attach_submit_fn, true);
+	this.form.addEventListener('submit', attach_submit_fn, attach_submit_opt);
 };
 
 form_validation.prototype.run = function() {
@@ -139,21 +140,22 @@ form_validation.prototype.execute_rules = function(input_name) {
 			var err = new Tooltip(input, Object.assign({title: err_msg}, form_validation_config.alert));
 
 			var this_instance = this;
+			var elm_cb_opts = true;
 			var elm_cb_fn_input = function() {
 				err._dispose();
-				input.removeEventListener('input', elm_cb_fn_input);
-				input.removeEventListener('blur', elm_cb_fn_blur);
+				input.removeEventListener('input', elm_cb_fn_input, elm_cb_opts);
+				input.removeEventListener('blur', elm_cb_fn_blur, elm_cb_opts);
 				this_instance.is_idle_error = false;
 			}
 			var elm_cb_fn_blur = function() {
 				err._dispose();
-				input.removeEventListener('input', elm_cb_fn_input);
-				input.removeEventListener('blur', elm_cb_fn_blur);
+				input.removeEventListener('input', elm_cb_fn_input, elm_cb_opts);
+				input.removeEventListener('blur', elm_cb_fn_blur, elm_cb_opts);
 				this_instance.is_idle_error = false;
 			}
 
-			input.addEventListener('input', elm_cb_fn_input);
-			input.addEventListener('blur', elm_cb_fn_blur);
+			input.addEventListener('input', elm_cb_fn_input, elm_cb_opts);
+			input.addEventListener('blur', elm_cb_fn_blur, elm_cb_opts);
 
 			err.show();
 			input.focus();
