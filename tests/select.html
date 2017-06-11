@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>basic input</title>
+	<link rel="stylesheet" href="theme.css?1"/>
+	<link rel="stylesheet" href="../vorm.css?2"/>
+	<script src="../node_modules/popper.js/dist/umd/popper.js"></script>
+	<script src="../node_modules/tooltip.js/dist/umd/tooltip.js"></script>
+	<script src="../vorm.js?10"></script>
+</head>
+<body>
+
+<form id="form1" autocomplete="off">
+	<div>
+		<select name="select1">
+			<option value>-- Select --</option>
+			<option>No Value Is A Value</option>
+			<option value="1">This value is 1</option>
+			<option value="2">The Second Options</option>
+			<option value="3">Trinity</option>
+		</select>
+	</div>
+
+	<button type="submit">submit</button>
+</form>
+
+<script>
+var fv = Vorm(document.getElementById('form1'), {
+	select1: [
+		'important',
+		{
+			action: function(elm) {
+				var v = Number(elm.value);
+				if (v > 1) return false;
+				return true;
+			},
+			message: 'One Wife is Enought'
+		}
+	]
+});
+</script>
+</body>
+</html>
