@@ -1,6 +1,7 @@
 {
   "name": "vorm.js",
   "dependencies": {
+    "lodash": "^4.17.4",
     "tooltip.js": "^1.1.4"
   }
 }
